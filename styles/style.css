@@ -2,7 +2,7 @@ img {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
-  width: 200px;
+  width: -webkit-fill-available;
   height: 200px;
   margin: auto;
   display: block;
@@ -13,10 +13,21 @@ img {
 #bodyId {
   margin: auto;
   width: 50%;
-  border: 3px solid green;
+  border: 3px solid rgb(75, 75, 75);
+  border-radius: 1%;
   padding: 10px;
 }
 
 h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  color: rgb(105, 64, 64);
+}
+
+body {
+  background-color: rgb(181, 202, 219);
+}
+
+.inputDiv {
   text-align: center;
 }
