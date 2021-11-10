@@ -4,68 +4,78 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/style.css" />
     <title>Document</title>
   </head>
   <body>
-    <div id="bodyId">
+    <div class="container">
       <h1>Weather Forecast</h1>
-      <div class="inputDiv">
-        <input id="search" type="text" value="" />
-        <button id="clickMe">Search</button>
+      <div id="bodyId">
+        <div class="inputDiv">
+          <input id="search" type="text" value="" />
+          <button id="clickMe">Search</button>
+        </div>
       </div>
       <div id="container"></div>
     </div>
 
     <script>
-      let grabInput = document.getElementById('search')
-      document.getElementById('clickMe').addEventListener('click', function () {
+      let grabInput = document.getElementById("search");
+      document.getElementById("clickMe").addEventListener("click", function () {
         fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${grabInput.value}&appid=aabf349b16531160b194c8dc4696d4a3&units=metric`
         )
           .then(function (response) {
-            return response.json()
+            return response.json();
           })
           .then(function (response) {
-            document.getElementById('container').remove()
-            newDiv = document.createElement('div')
-            newDiv.id = 'container'
-            bodySelector = document.querySelector('#bodyId')
-            bodySelector.appendChild(newDiv)
-            selectBody = document.querySelector('#container')
-            console.log(response)
+            document.getElementById("container").remove();
+            newDiv = document.createElement("div");
+            newDiv.id = "container";
+            bodySelector = document.querySelector("#bodyId");
+            bodySelector.appendChild(newDiv);
+            selectBody = document.querySelector("#container");
+            console.log(response);
 
-            weatherDescription1 = document.createElement('h1')
-            weatherDescription1.innerHTML = response['name']
-            selectBody.appendChild(weatherDescription1)
+            weatherDescription1 = document.createElement("h1");
+            weatherDescription1.innerHTML = response["name"];
+            selectBody.appendChild(weatherDescription1);
 
-            weatherDescription2 = document.createElement('h1')
+            weatherDescription2 = document.createElement("h1");
             weatherDescription2.innerHTML =
-              response['weather'][0]['description']
-            selectBody.appendChild(weatherDescription2)
-            weatherDescription3 = document.createElement('h1')
-            weatherDescription3.innerHTML = response['main']['temp'] + '°C'
-            selectBody.appendChild(weatherDescription3)
+              response["weather"][0]["description"];
+            selectBody.appendChild(weatherDescription2);
+            weatherDescription3 = document.createElement("h1");
+            weatherDescription3.innerHTML = response["main"]["temp"] + "°C";
+            selectBody.appendChild(weatherDescription3);
 
-            imgCreate = document.createElement('img')
-            imgCreate.className = 'imageClass'
-            selectBody.appendChild(imgCreate)
+            imgCreate = document.createElement("img");
+            imgCreate.className = "imageClass";
+            selectBody.appendChild(imgCreate);
 
-            const img = document.querySelector('img')
+            const img = document.querySelector("img");
             fetch(
-              'https://api.giphy.com/v1/gifs/translate?api_key=WHaCOzKIdzg93iRJL1m3E049VNCQ0h7I&s=' +
-                +'forecast' +
+              "https://api.giphy.com/v1/gifs/translate?api_key=WHaCOzKIdzg93iRJL1m3E049VNCQ0h7I&s=" +
+                +"forecast" +
                 weatherDescription2.innerHTML,
-              { mode: 'cors' }
+              { mode: "cors" }
             )
               .then(function (response) {
-                return response.json()
+                return response.json();
               })
               .then(function (response) {
-                img.src = response.data.images.original.url
-              })
-          })
-      })
+                img.src = response.data.images.original.url;
+              });
+          });
+      });
     </script>
   </body>
 </html>
